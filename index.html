@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kristian Israel - 3 Meses</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      background: url('sua-arte-de-fundo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 255, 255, 0.3);
+      z-index: -1;
+      backdrop-filter: blur(4px);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 900px;
+      margin-top: 60px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      color: #0044cc;
+      box-shadow: 0 0 30px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .carousel-wrapper {
+      overflow: hidden;
+      width: 100%;
+      height: 400px;
+      margin-bottom: 30px;
+      border-radius: 15px;
+    }
+
+    .carousel {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+      width: 100%;
+    }
+
+    .photo-text {
+      min-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      flex-shrink: 0;
+    }
+
+    .photo-text img {
+      height: 360px;
+      border-radius: 10px;
+      object-fit: cover;
+      max-width: 100%;
+    }
+
+    .photo-text .textos {
+      text-align: center;
+      color: #002266;
+      max-width: 50%;
+      margin-left: 20px;
+    }
+
+    .photo-text .textos h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .photo-text .textos p {
+      font-size: 16px;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .buttons button {
+      padding: 12px 25px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 50px;
+      background-color: #ff6600;
+      color: white;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .buttons button:hover {
+      background-color: #ff8533;
+      transform: scale(1.1);
+    }
+
+    .buttons button:active {
+      background-color: #0044cc;
+      transform: scale(1.05);
+    }
+
+    .popup-container {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0,0,0,0.6);
+      z-index: 10;
+    }
+
+    .popup {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      font-size: 22px;
+      color: #0044cc;
+      position: relative;
+      animation: popupPulse 2s infinite;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: red;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes popupPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    /* Ajustes para telas menores */
+    @media (max-width: 768px) {
+      .photo-text .textos {
+        max-width: 60%;
+      }
+
+      .photo-text img {
+        height: 300px;
+      }
+
+      .carousel-wrapper {
+        height: 300px;
+      }
+
+      .buttons button {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .photo-text .textos {
+        max-width: 70%;
+      }
+
+      .photo-text img {
+        height: 250px;
+      }
+
+      .carousel-wrapper {
+        height: 250px;
+      }
+
+      .buttons button {
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+
+      .container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <div class="container">
+    <div class="carousel-wrapper">
+      <div class="carousel" id="carousel">
+        <div class="photo-text">
+          <img src="foto1.jpg" alt="Foto 1" />
+          <div class="textos">
+            <h2>3 Meses de Amor</h2>
+            <p>Sorrisos que aquecem nosso coração!</p>
+          </div>
+        </div>
+        <div class="photo-text">
+          <img src="foto2.jpg" alt="Foto 2" />
+          <div class="textos">
+            <h2>Bênçãos sem fim</h2>
+            <p>Cheio de fofura e alegria!</p>
+          </div>
+        </div>
+        <div class="photo-text">
+          <img src="foto3.jpg" alt="Foto 3" />
+          <div class="textos">
+            <h2>Nosso Solzinho</h2>
+            <p>Um raio de luz nas nossas vidas ☀️</p>
+          </div>
+        </div>
+        <div class="photo-text">
+          <img src="foto4.jpg" alt="Foto 4" />
+          <div class="textos">
+            <h2>Momentos Mágicos</h2>
+            <p>Cada instante é único e especial 💙</p>
+          </div>
+        </div>
+        <div class="photo-text">
+          <img src="foto5.jpg" alt="Foto 5" />
+          <div class="textos">
+            <h2>Nosso Milagre</h2>
+            <p>Presente de Deus em forma de bebê!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h1 style="font-size: 20px; margin-top: 10px;">Descubra quem são os atores dessa história!</h1>
+
+    <div class="buttons">
+      <button id="btn-revelar">Clique para Revelar</button>
+    </div>
+  </div>
+
+  <div class="popup-container" id="popup-container">
+    <div class="popup">
+      <span class="close-btn" id="btn-fechar">&times;</span>
+      <p><strong>Pai:</strong> Israel</p>
+      <p><strong>Mãe:</strong> Maíra</p>
+    </div>
+  </div>
+
+  <script>
+    // Carrossel funcional
+    const carousel = document.getElementById('carousel');
+    const slides = carousel.children;
+    let index = 0;
+
+    function showSlide(i) {
+      carousel.style.transform = `translateX(-${i * 100}%)`;
+    }
+
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }, 5000);
+
+    // Popup funcional
+    const btnRevelar = document.getElementById('btn-revelar');
+    const popupContainer = document.getElementById('popup-container');
+    const btnFechar = document.getElementById('btn-fechar');
+
+    btnRevelar.addEventListener('click', () => {
+      popupContainer.style.display = 'flex';
+    });
+
+    btnFechar.addEventListener('click', () => {
+      popupContainer.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
